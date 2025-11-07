@@ -1,9 +1,7 @@
 from app.bus import bus
-from app.schemas.events import STTFinal, ManagerRoute, AgentRequest, ClientAudio
+from app.schemas.events import STTFinal, ManagerRoute, AgentRequest
 
-
-
-@subscribe("stt.final")
+@bus.subscribe("stt.final")
 async def on_stt_final(event: STTFinal):
     # TODO: Basic intent detection
     intent = "booking" # or "faq"

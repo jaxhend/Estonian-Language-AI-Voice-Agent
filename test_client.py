@@ -3,8 +3,11 @@ import websockets
 import pyaudio
 import queue
 
+import uuid
+
 # --- Configuration ---
-WEBSOCKET_URI = "ws://127.0.0.1:8000/ws"
+CLIENT_ID = uuid.uuid4()
+WEBSOCKET_URI = f"ws://127.0.0.1:8000/ws/{CLIENT_ID}"
 CHUNK_SIZE = 4096
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
