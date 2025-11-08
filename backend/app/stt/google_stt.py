@@ -3,22 +3,22 @@ import os
 from typing import AsyncGenerator
 
 from app.bus import bus
+from app.core.config import GOOGLE_APPLICATION_CREDENTIALS
+from app.core.config import LOCATION
+from app.core.config import PROJECT_ID
+from app.core.config import RECOGNIZER_NAME
 from app.schemas.events import ClientAudio, STTFinal, STTPartial
-from dotenv import load_dotenv
 from google.cloud import speech_v2
 from google.cloud.speech_v2.types import cloud_speech
 
-load_dotenv()
 
 class GoogleSTT:
 
     def __init__(self, client_id, recognizer_path: str | None = None, language: str = "et-EE"):
         # Configuration
-        GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-        print(GOOGLE_APPLICATION_CREDENTIALS)
-        self.PROJECT_ID = os.getenv("PROJECT_ID")
-        self.LOCATION = os.getenv("LOCATION")
-        self.RECOGNIZER_NAME = os.getenv("RECOGNIZER_NAME")
+        self.PROJECT_ID = PROJECT_ID
+        self.LOCATION = LOCATION
+        self.RECOGNIZER_NAME = RECOGNIZER_NAME
 
         if GOOGLE_APPLICATION_CREDENTIALS:
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_APPLICATION_CREDENTIALS
@@ -133,5 +133,4 @@ class GoogleSTT:
         finally:
             print(f"STT process for {self.client_id} has ended.")
 
-# This file is now a module, so the main guard is removed.
 # The lifecycle of GoogleSTT will be managed by the WebSocket connection handler.
