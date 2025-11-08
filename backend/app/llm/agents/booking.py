@@ -1,16 +1,13 @@
-from app.bus import bus
-from app.schemas.events import AgentRequest, AgentResult, ManagerAnswer
-from app.core.ids import new_id
-from .base import Agent
-import os
 import httpx
-import re
+from app.bus import bus
+from app.core.ids import new_id
+from app.schemas.events import AgentRequest, AgentResult, ManagerAnswer
+from app.services.booking_manager import create_booking, format_booking_confirmation
 from app.services.context_loader import format_context_for_llm, search_faq
 from app.services.conversation_history import format_history_for_llm, add_message_to_history
-from app.services.booking_manager import create_booking, format_booking_confirmation
 
-VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://31.22.104.92:8000")
-VLLM_MODEL = os.getenv("VLLM_MODEL", "google/gemma-3-27b-it")
+from .base import Agent
+from ...core import config
 
 # Load business context once at startup
 BUSINESS_CONTEXT = format_context_for_llm()
@@ -74,10 +71,10 @@ class BookingAgent(Agent):
 
             async with httpx.AsyncClient(timeout=30.0) as client:
                 response = await client.post(
-                    f"{VLLM_BASE_URL}/v1/completions",
+                    config.LLM_URL,
                     headers={"Content-Type": "application/json"},
                     json={
-                        "model": VLLM_MODEL,
+                        "model": config.LLM_MODEL,
                         "prompt": full_prompt,
                         "max_tokens": 250,
                         "temperature": 0.7,

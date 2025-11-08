@@ -3,9 +3,9 @@ from . import logger
 from ..core import config
 
 async def complete(prompt: str, max_tokens: int = 512) -> str:
-    url = f"{config.VLLM_BASE_URL}/v1/completions"
+    url = config.LLM_URL
     payload = {
-        "model": config.VLLM_MODEL,
+        "model": config.LLM_MODEL,
         "prompt": prompt,
         "max_tokens": max_tokens,
     }

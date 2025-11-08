@@ -1,17 +1,23 @@
+# .env file should be in the /backend directory.
+
 from dotenv import load_dotenv
 import os
 
-# To add your API key, you can either set it as an environment variable
-# before running the server (e.g., `export ELEVENLABS_API_KEY="your_key"`),
-# or you can hardcode it here for simplicity during testing.
-
-# Method 1: Get from environment variable (recommended)
-#ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-
-# Method 2: Hardcode the key (uncomment the line below and paste your key)
 load_dotenv()
+
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID")
+ELEVENLABS_MODEL = os.getenv("ELEVENLABS_MODEL")
+ELEVENLABS_LANGUAGE = os.getenv("ELEVENLABS_LANGUAGE")
+ELEVENLABS_LANG = os.getenv("ELEVENLABS_LANG")
 
-if not ELEVENLABS_API_KEY:
-    print("Warning: ELEVENLABS_API_KEY is not set. TTS will not work.")
+LLM_URL = os.getenv("LLM_URL")
+LLM_MODEL = os.getenv("LLM_MODEL")
+LLM_MAX_TOKENS = os.getenv("LLM_MAX_TOKENS")
+LLM_TIMEOUT_S = os.getenv("LLM_TIMEOUT_S")
+DB_URL = os.getenv("DB_URL")
 
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+PROJECT_ID = os.getenv("PROJECT_ID")
+LOCATION = os.getenv("LOCATION")
+RECOGNIZER_NAME = os.getenv("RECOGNIZER_NAME")
