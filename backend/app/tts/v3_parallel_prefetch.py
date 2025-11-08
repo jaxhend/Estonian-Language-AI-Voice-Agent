@@ -65,7 +65,7 @@ class V3ParallelPrefetchTTS:
         max_concurrency: int = 3,     # tõsta/langeta vastavalt limiitidele
         chunk_emit_size: int = 2048,  # väiksem → tihedam push → kiirem algus
         stability: float = 0.5,       # v3: 0.0 | 0.5 | 1.0
-        output_format: str = "mp3_22050_64",  # väiksem voog → kiiremini kohale
+        output_format: str = "mp3_44100_64",  # balanced speed/quality for v3
     ):
         self.api_key = api_key
         self.voice_id = voice_id

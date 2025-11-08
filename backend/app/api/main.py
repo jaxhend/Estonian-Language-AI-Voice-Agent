@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.ws import router as ws_router
+from app.api.bookings_router import router as bookings_router
 import importlib
 import pkgutil
 
@@ -36,6 +37,7 @@ async def startup_event():
 
 
 app.include_router(ws_router)
+app.include_router(bookings_router, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn

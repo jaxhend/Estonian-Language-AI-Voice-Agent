@@ -7,5 +7,5 @@ async def on_stt_final(event: STTFinal):
     intent = "booking" # or "faq"
     agents = [intent]
 
-    await bus.publish("manager.route", ManagerRoute(intent=intent, agents=agents))
-    await bus.publish("agent.request", AgentRequest(agent=intent, text=event.text))
+    await bus.publish("manager.route", ManagerRoute(intent=intent, agents=agents, client_id=event.client_id))
+    await bus.publish("agent.request", AgentRequest(agent=intent, text=event.text, client_id=event.client_id))
