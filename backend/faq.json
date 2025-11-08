@@ -1,0 +1,82 @@
+{
+  "faq": [
+    {
+      "id": "faq_001",
+      "question": "Kuidas broneerida aega?",
+      "answer": "Saate broneerida aega helistades või kasutades meie veebilehte. Samuti saate rääkida minuga ja ma aitan teid broneerida.",
+      "category": "booking",
+      "keywords": ["broneerimine", "aeg", "booking", "how to book"]
+    },
+    {
+      "id": "faq_002",
+      "question": "Kas saab tühistada broneeringu?",
+      "answer": "Jah, saate tühistada broneeringu vähemalt 24 tundi ette teatades.",
+      "category": "booking",
+      "keywords": ["tühistamine", "cancel", "cancel booking", "broneeringu tühistamine"]
+    },
+    {
+      "id": "faq_003",
+      "question": "Millised on teie hinnad?",
+      "answer": "Meie hinnad varieeruvud teenuse järgi. Juukselõikus maksab 25eurot, massaaž 50 eurot ja konsultatsioon on 15 eurot.",
+      "category": "pricing",
+      "keywords": ["hinnad", "price", "prices", "maksab", "cost"]
+    },
+    {
+      "id": "faq_004",
+      "question": "Millised on lahtiolekuajad?",
+      "answer": "Oleme avatud Esmaspäevast Neljapäevani 9:00 kuni 18:00, reedel 9:00 kuni 17:00, laupäeval 10:00 kuni 15:00. Pühapäeviti oleme suletud.",
+      "category": "hours",
+      "keywords": ["lahtiolekuajad", "avatud", "suletud", "opening hours", "working hours"]
+    },
+    {
+      "id": "faq_005",
+      "question": "Kus te asute?",
+      "answer": "Meil on kaks asukohta: Kesklinnas (Viru tänav 1) ja Kristiines (Mustamäe tee 5).",
+      "category": "location",
+      "keywords": ["asukoht", "location", "address", "kus", "where"]
+    },
+    {
+      "id": "faq_006",
+      "question": "Kui kaua juukselõikus kestab?",
+      "answer": "Juukselõikus kestab umbes 30 minutit ja maksab 25 eurot.",
+      "category": "service",
+      "keywords": ["juukselõikus", "haircut", "kestab", "duration", "kui kaua"]
+    },
+    {
+      "id": "faq_007",
+      "question": "Kui kaua massaaž kestab?",
+      "answer": "Massaaž kestab 60 minutit ja maksab 50 eurot.",
+      "category": "service",
+      "keywords": ["massaaž", "massage", "kestab", "duration", "kui kaua"]
+    },
+    {
+      "id": "faq_008",
+      "question": "Kas konsultatsioon on tasuta?",
+      "answer": "Jah, esialgne konsultatsioon on täiesti tasuta ja kestab 15 minutit.",
+      "category": "service",
+      "keywords": ["konsultatsioon", "consultation", "tasuta", "free"]
+    },
+    {
+      "id": "faq_009",
+      "question": "Kas pean hilinemisest teatama?",
+      "answer": "Jah, palun andke meile teada võimalikult kiiresti. Maksimaalne lubatud hilinemine on 15 minutit.",
+      "category": "policy",
+      "keywords": ["hilinemine", "late", "delay", "teatama"]
+    },
+    {
+      "id": "faq_010",
+      "question": "Kui kaua ette saab broneerida?",
+      "answer": "Saate broneerida kuni 30 päeva ette.",
+      "category": "booking",
+      "keywords": ["ette", "advance", "booking", "broneerimine", "kui kaua ette"]
+    },
+    {
+      "id": "faq_011",
+      "question": "Kas pakute kinkekaarte?",
+      "answer": "Jah, pakume kinkekaarte kõikidele teenustele. Kinkekaardid on saadaval 25€, 50€ ja 100€ väärtuses.",
+      "category": "other",
+      "keywords": ["kinkekaart", "gift card", "kingitus", "present"]
+    }
+  ]
+}
+

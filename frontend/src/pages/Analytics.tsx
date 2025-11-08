@@ -1,32 +1,60 @@
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { Card } from "@/components/ui/card";
-import { Calendar, CheckCircle2, Clock, TrendingUp, Users, DollarSign } from "lucide-react";
+import { Calendar, CheckCircle2, Clock, TrendingUp, Users, DollarSign, Bot, PieChart as PieIcon } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Legend, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { ChartConfig } from "@/components/ui/chart";
 
+const API_URL = "http://127.0.0.1:8000/api";
+
 const Analytics = () => {
-  const stats = [
-    { label: "Total Bookings", value: "127", icon: Calendar, color: "text-primary" },
-    { label: "Completed", value: "98", icon: CheckCircle2, color: "text-success" },
-    { label: "Active Users", value: "45", icon: Users, color: "text-secondary" },
-    { label: "Avg Response Time", value: "1.2s", icon: Clock, color: "text-accent" },
-  ];
+  const [stats, setStats] = useState({ total_bookings: 0, completed_bookings: 0, active_users: 0, avg_response_time: "0s" });
+  const [monthlyData, setMonthlyData] = useState([]);
+  const [topServices, setTopServices] = useState([]);
+  const [summary, setSummary] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const monthlyData = [
-    { month: "Jan", bookings: 45, revenue: 4500 },
-    { month: "Feb", bookings: 52, revenue: 5200 },
-    { month: "Mar", bookings: 61, revenue: 6100 },
-    { month: "Apr", bookings: 70, revenue: 7000 },
-    { month: "May", bookings: 85, revenue: 8500 },
-    { month: "Jun", bookings: 92, revenue: 9200 },
-  ];
+  useEffect(() => {
+    const fetchAllData = async () => {
+      setLoading(true);
+      try {
+        const [statsRes, monthlyRes, topServicesRes, summaryRes] = await Promise.all([
+          fetch(`${API_URL}/analytics/booking-stats`),
+          fetch(`${API_URL}/analytics/monthly-trends`),
+          fetch(`${API_URL}/analytics/top-services`),
+          fetch(`${API_URL}/analytics/summary`),
+        ]);
 
-  const topServices = [
-    { name: "Haircut", bookings: 45, percentage: 35, fill: "hsl(var(--primary))" },
-    { name: "Spa Treatment", bookings: 38, percentage: 30, fill: "hsl(var(--secondary))" },
-    { name: "Massage", bookings: 25, percentage: 20, fill: "hsl(var(--accent))" },
-    { name: "Consultation", bookings: 19, percentage: 15, fill: "hsl(var(--success))" },
+        const statsData = await statsRes.json();
+        const monthlyData = await monthlyRes.json();
+        const topServicesData = await topServicesRes.json();
+        const summaryData = await summaryRes.json();
+
+        setStats(statsData);
+        setMonthlyData(monthlyData);
+        setTopServices(topServicesData.map((s: any, i: number) => ({
+          ...s,
+          fill: ["hsl(var(--primary))", "hsl(var(--secondary))", "hsl(var(--accent))", "hsl(var(--success))"][i % 4]
+        })));
+        setSummary(summaryData.summary);
+
+      } catch (error) {
+        console.error("Failed to fetch analytics data:", error);
+        setSummary("Failed to load analytics data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllData();
+  }, []);
+
+  const statCards = [
+    { label: "Total Bookings", value: stats.total_bookings, icon: Calendar, color: "text-primary" },
+    { label: "Completed", value: stats.completed_bookings, icon: CheckCircle2, color: "text-success" },
+    { label: "Active Users", value: stats.active_users, icon: Users, color: "text-secondary" },
+    { label: "Avg Conversation Time", value: stats.avg_response_time, icon: Clock, color: "text-accent" },
   ];
 
   const bookingChartConfig = {
@@ -47,6 +75,7 @@ const Analytics = () => {
     bookings: {
       label: "Bookings",
     },
+    ...Object.fromEntries(topServices.map((s: any) => [s.name, { label: s.name, color: s.fill }]))
   } satisfies ChartConfig;
 
   return (
@@ -58,9 +87,25 @@ const Analytics = () => {
           <p className="text-muted-foreground">Track performance and booking trends</p>
         </div>
 
+        {/* AI Summary Card */}
+        <Card className="p-6 shadow-[var(--shadow-card)] bg-gradient-to-br from-primary/10 to-background">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-foreground">AI-Generated Summary</h2>
+            <Bot className="h-6 w-6 text-primary" />
+          </div>
+          {loading ? (
+            <div className="space-y-2">
+              <div className="h-4 bg-muted rounded w-3/4 animate-pulse"></div>
+              <div className="h-4 bg-muted rounded w-1/2 animate-pulse"></div>
+            </div>
+          ) : (
+            <div className="text-foreground/90 whitespace-pre-wrap">{summary}</div>
+          )}
+        </Card>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((stat) => (
+          {statCards.map((stat) => (
             <Card key={stat.label} className="p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-soft)] transition-shadow">
               <div className="flex items-start justify-between">
                 <div>
@@ -78,7 +123,7 @@ const Analytics = () => {
           {/* Booking Trends Chart */}
           <Card className="p-6 shadow-[var(--shadow-card)]">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-foreground">Monthly Booking Trends</h2>
+              <h2 className="text-xl font-semibold text-foreground">Monthly Booking Trends (2025)</h2>
               <TrendingUp className="h-5 w-5 text-success" />
             </div>
             <ChartContainer config={bookingChartConfig} className="h-64 w-full">
@@ -107,7 +152,7 @@ const Analytics = () => {
           {/* Revenue Chart */}
           <Card className="p-6 shadow-[var(--shadow-card)]">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-foreground">Revenue Trends</h2>
+              <h2 className="text-xl font-semibold text-foreground">Revenue Trends (2025)</h2>
               <DollarSign className="h-5 w-5 text-success" />
             </div>
             <ChartContainer config={revenueChartConfig} className="h-64 w-full">
@@ -134,6 +179,7 @@ const Analytics = () => {
           <Card className="p-6 shadow-[var(--shadow-card)]">
             <h2 className="text-xl font-semibold mb-6 text-foreground">Performance Metrics</h2>
             <div className="space-y-4">
+              {/* Mocked data for now */}
               <div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-muted-foreground">Customer Satisfaction</span>
@@ -152,24 +198,6 @@ const Analytics = () => {
                   <div className="h-full bg-gradient-to-r from-primary to-secondary w-[88%]" />
                 </div>
               </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-muted-foreground">Booking Completion</span>
-                  <span className="font-medium text-foreground">92%</span>
-                </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-primary to-secondary w-[92%]" />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-muted-foreground">AI Confidence Score</span>
-                  <span className="font-medium text-foreground">96%</span>
-                </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-primary to-secondary w-[96%]" />
-                </div>
-              </div>
             </div>
           </Card>
 
@@ -177,26 +205,13 @@ const Analytics = () => {
             <h2 className="text-xl font-semibold mb-4 text-foreground">Top Services</h2>
             <ChartContainer config={servicesChartConfig} className="h-64 w-full">
               <PieChart>
-                <ChartTooltip 
-                  content={<ChartTooltipContent />}
-                  formatter={(value, name, props) => `${props.payload.bookings} bookings (${props.payload.percentage}%)`}
-                />
-                <Pie
-                  data={topServices}
-                  dataKey="bookings"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={90}
-                  paddingAngle={2}
-                  label={({ name, percentage }) => `${name} (${percentage}%)`}
-                  labelLine={false}
-                >
-                  {topServices.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                <ChartTooltip content={<ChartTooltipContent nameKey="bookings" hideLabel />} />
+                <Pie data={topServices} dataKey="bookings" nameKey="name" innerRadius={50}>
+                  {topServices.map((entry: any) => (
+                    <Cell key={`cell-${entry.name}`} fill={entry.fill} />
                   ))}
                 </Pie>
+                <ChartLegend content={<ChartLegendContent nameKey="name" />} />
               </PieChart>
             </ChartContainer>
           </Card>

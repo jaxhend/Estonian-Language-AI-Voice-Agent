@@ -11,7 +11,8 @@ from app.services.booking_manager import (
     get_cancelled_bookings,
     confirm_booking,
     cancel_booking,
-    get_booking_by_id
+    get_booking_by_id,
+    get_booking_id_by_index,
 )
 
 router = APIRouter()
@@ -59,17 +60,31 @@ async def get_booking(booking_id: str):
 @router.post("/bookings/confirm")
 async def confirm_booking_endpoint(request: BookingConfirmRequest):
     """Confirm a pending booking"""
-    success = confirm_booking(request.booking_id)
+    bid = request.booking_id
+    # Try to interpret numeric index
+    if bid.isdigit():
+        real_id = get_booking_id_by_index(int(bid))
+        if not real_id:
+            raise HTTPException(status_code=400, detail="Invalid booking index")
+        bid = real_id
+
+    success = confirm_booking(bid)
     if not success:
         raise HTTPException(status_code=400, detail="Failed to confirm booking")
-    return {"message": "Booking confirmed successfully", "booking_id": request.booking_id}
+    return {"message": "Booking confirmed successfully", "booking_id": bid}
 
 
 @router.post("/bookings/cancel")
 async def cancel_booking_endpoint(request: BookingCancelRequest):
     """Cancel a booking"""
-    success = cancel_booking(request.booking_id, request.reason)
+    bid = request.booking_id
+    if bid.isdigit():
+        real_id = get_booking_id_by_index(int(bid))
+        if not real_id:
+            raise HTTPException(status_code=400, detail="Invalid booking index")
+        bid = real_id
+
+    success = cancel_booking(bid, request.reason)
     if not success:
         raise HTTPException(status_code=400, detail="Failed to cancel booking")
-    return {"message": "Booking cancelled successfully", "booking_id": request.booking_id}
-
+    return {"message": "Booking cancelled successfully", "booking_id": bid}

@@ -222,3 +222,23 @@ Telefon: {booking['customer_phone']}
 
     return msg.strip()
 
+def get_all_bookings_ordered() -> list:
+    """Return a combined list of bookings in the order: pending, confirmed, cancelled.
+    This mirrors the frontend transform ordering so a numeric index (1-based) can be
+    mapped to the real booking_id.
+    """
+    db = load_database()
+    bookings = db.get("bookings", {})
+    return list(bookings.get("pending", [])) + list(bookings.get("confirmed", [])) + list(bookings.get("cancelled", []))
+
+
+def get_booking_id_by_index(index: int) -> Optional[str]:
+    """Given a 1-based index used by the frontend, return the real booking_id string.
+    Returns None if index is out of range.
+    """
+    if index < 1:
+        return None
+    all_b = get_all_bookings_ordered()
+    if index > len(all_b):
+        return None
+    return all_b[index - 1].get("booking_id")

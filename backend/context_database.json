@@ -1,0 +1,948 @@
+{
+  "business": {
+    "name": "Sinu Ettevõte OÜ",
+    "description": "Professionaalne teenusepakkuja",
+    "phone": "+372 1234 5678",
+    "email": "info@ettevote.ee",
+    "address": "Tallinn, Eesti"
+  },
+  "services": [
+    {
+      "id": "haircut",
+      "name": "Juukselõikus",
+      "description": "Professionaalne juukselõikus",
+      "duration_minutes": 30,
+      "price_eur": 25,
+      "available": true
+    },
+    {
+      "id": "massage",
+      "name": "Massaaž",
+      "description": "Lõõgastav massaaž",
+      "duration_minutes": 60,
+      "price_eur": 50,
+      "available": true
+    },
+    {
+      "id": "consultation",
+      "name": "Konsultatsioon",
+      "description": "Tasuta esialgne konsultatsioon",
+      "duration_minutes": 15,
+      "price_eur": 0,
+      "available": true
+    }
+  ],
+  "working_hours": {
+    "monday": {
+      "open": "09:00",
+      "close": "18:00"
+    },
+    "tuesday": {
+      "open": "09:00",
+      "close": "18:00"
+    },
+    "wednesday": {
+      "open": "09:00",
+      "close": "18:00"
+    },
+    "thursday": {
+      "open": "09:00",
+      "close": "18:00"
+    },
+    "friday": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "saturday": {
+      "open": "10:00",
+      "close": "15:00"
+    },
+    "sunday": {
+      "closed": true
+    }
+  },
+  "locations": [
+    {
+      "id": "downtown",
+      "name": "Kesklinnas",
+      "address": "Viru tänav 1, Tallinn",
+      "available": true
+    },
+    {
+      "id": "suburb",
+      "name": "Kristiines",
+      "address": "Mustamäe tee 5, Tallinn",
+      "available": true
+    }
+  ],
+  "staff": [
+    {
+      "id": "maria",
+      "name": "Maria",
+      "specialties": [
+        "haircut",
+        "consultation"
+      ],
+      "available_days": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ]
+    },
+    {
+      "id": "jaan",
+      "name": "Jaan",
+      "specialties": [
+        "massage",
+        "consultation"
+      ],
+      "available_days": [
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ]
+    }
+  ],
+  "policies": {
+    "cancellation_hours": 24,
+    "late_arrival_minutes": 15,
+    "advance_booking_days": 30
+  },
+  "conversation_history": {
+    "enabled": true,
+    "max_messages_per_user": 50,
+    "sessions": [
+      {
+        "client_id": "01988e21-875d-408c-ae75-4d4cf8ecc0a9",
+        "started_at": "2025-11-08T06:59:15.596475",
+        "last_interaction": "2025-11-08T07:01:08.703876",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T06:59:15.596489",
+            "user": "Tere, ma sooviks tulla juuksurisse.",
+            "assistant": "Tere! Muidugi. Kas soovite juukselõikust või konsultatsiooni?"
+          },
+          {
+            "timestamp": "2025-11-08T06:59:42.159682",
+            "user": " Juukselõikus, palun. Juukselõikus sooviks, palun.",
+            "assistant": "Suurepärane! Millisel ajal ja asukohas teid sobiks?"
+          },
+          {
+            "timestamp": "2025-11-08T06:59:56.856312",
+            "user": " Kristiines ja esmaspäeval kell 4:00",
+            "assistant": "Vabandust, aga kell 4:00 pole Kristiines vaba. Kas sobiks teile näiteks kell 14:00?\n```"
+          },
+          {
+            "timestamp": "2025-11-08T07:00:23.482500",
+            "user": " Kell 14:00 sobib jah? Jah.",
+            "assistant": "Hea! Kas te soovite broneerida juukselõikuse Kristiinesse esmaspäeval kell 14:00? Juukselõikus on 30 minutit ja maksab 25€.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T07:00:48.320551",
+            "user": " Jah, soovin.",
+            "assistant": "Suurepärane! Palun andke oma nimi ja kontakttelefon."
+          },
+          {
+            "timestamp": "2025-11-08T07:01:08.703852",
+            "user": " Robin 525 6",
+            "assistant": "Aitäh! Teie juukselõikus on broneeritud Kristiinesse esmaspäeval kell 14:00. Teie kontakttelefon on 5256. Kas on midagi muud, millega ma saan teid aidata?"
+          }
+        ]
+      },
+      {
+        "client_id": "2ebffab1-d8c8-4685-a82c-74ef15ffba30",
+        "started_at": "2025-11-08T07:08:02.993263",
+        "last_interaction": "2025-11-08T07:10:05.753942",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T07:08:02.993299",
+            "user": "Tere, ma sooviks juuksurisse tulla.",
+            "assistant": "Tere! Hea meel, et meid valisite. Millist teenust te sooviksite? Juukselõikus maksab 25€ ja kestab 30 minutit. Pakume ka tasuta konsultatsiooni, mis kestab 15 minutit."
+          },
+          {
+            "timestamp": "2025-11-08T07:08:09.523071",
+            "user": " Tere, mina olen juuksur.",
+            "assistant": "Vabandust, ma ei saa aru. Kas te sooviksite broneerida teenust?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:14.981466",
+            "user": " Hallo.",
+            "assistant": "Tere! Kas saaks ma sind aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:20.715207",
+            "user": " Jah, ju.",
+            "assistant": "Vabandust, ma ei saa aru. Kas sa sooviksid broneerida teenust?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:23.334293",
+            "user": " Sooviks juukselõikust.",
+            "assistant": "Hea! Millisel ajal ja kuupäeval oleks see teile sobiv?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:26.368095",
+            "user": " Hallo.",
+            "assistant": "Tere! Kas saaks ma sind aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:36.043966",
+            "user": " Jah, ma sooviks juukselõikust.",
+            "assistant": "Hea! Millisel ajal ja kuupäeval oleks see teile sobiv?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:48.932328",
+            "user": " 9. november kell 15:00",
+            "assistant": "Kas see oleks Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T07:08:56.860218",
+            "user": " Kesklinnas, palun.",
+            "assistant": "Palun sisesta oma nimi ja telefoninumber."
+          },
+          {
+            "timestamp": "2025-11-08T07:09:03.867141",
+            "user": " Seda ei suuda teha.",
+            "assistant": "Vabandust, et see ebasobiv. Kas saaksite mulle öelda, mis on probleem?"
+          },
+          {
+            "timestamp": "2025-11-08T07:09:08.013717",
+            "user": " Robin 5259",
+            "assistant": "Kas see on teie nimi ja telefoninumber? Robin, 5259?"
+          },
+          {
+            "timestamp": "2025-11-08T07:09:31.618016",
+            "user": " Jah. On minu telefoninumbri nimi.",
+            "assistant": "Suurepärane! Teeme kokku: juukselõikus Kesklinnas 9. novembril kell 15:00, klient Robin, telefon 5259. Kas see on kõik õige?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 3016e51e"
+          },
+          {
+            "timestamp": "2025-11-08T07:10:05.753924",
+            "user": " Jah, see on õige.",
+            "assistant": "Suurepärane! Teie juukselõikus on broneeritud Kesklinnas 9. novembril kell 15:00. Klient: Robin, telefon 5259.\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 9e36aded"
+          }
+        ]
+      },
+      {
+        "client_id": "ea0a957c-1c0d-414a-b123-a3d1cbf01ce6",
+        "started_at": "2025-11-08T07:35:12.975364",
+        "last_interaction": "2025-11-08T07:35:35.739535",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T07:35:12.975628",
+            "user": "testime 1",
+            "assistant": "Tere tulemast Sinu Ettevõte OÜ-sse! Millist teenust te soovite broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T07:35:35.739498",
+            "user": "Tahaksin juukselõikust.",
+            "assistant": ""
+          }
+        ]
+      },
+      {
+        "client_id": "6430a2e0-1007-4d50-b9cd-3135dd3e732a",
+        "started_at": "2025-11-08T07:35:13.220815",
+        "last_interaction": "2025-11-08T07:35:51.381764",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T07:35:13.220822",
+            "user": "testi mäng",
+            "assistant": "Vabandust, ma ei saa sind aidata. Olen siin, et aidata sind teenuste broneerimisega Sinu Ettevõte OÜ-s. Millist teenust sa sooviksid broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T07:35:36.276203",
+            "user": " 1 2 3 Tahaksin juukselõikust.",
+            "assistant": "Hästi. Millisel ajal ja kuupäeval soovid juukselõikust?"
+          },
+          {
+            "timestamp": "2025-11-08T07:35:51.381747",
+            "user": " 9. november kell 15:00",
+            "assistant": "Kas sa soovid broneerida juukselõikuse 9. novembril kell 15:00? Palun vali asukoht: Kesklinnas (Viru tänav 1, Tallinn) või Kristiines (Mustamäe tee 5, Tallinn)."
+          }
+        ]
+      },
+      {
+        "client_id": "1444d864-dfa6-47f0-bc8d-0e07d427b5ec",
+        "started_at": "2025-11-08T08:16:40.511635",
+        "last_interaction": "2025-11-08T08:45:10.571835",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T08:16:40.511656",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T08:16:49.969300",
+            "user": " Tahaks juuserist tulla.",
+            "assistant": "Tere! Juukselõikus on suurepärane valik. Millisel päeval ja kellaajal teile sobiks? Palun valige ka asukoht: Kesklinnas (Viru tänav 1, Tallinn) või Kristiines (Mustamäe tee 5, Tallinn).\nBOOKING_CONFIRMED|"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:24.244869",
+            "user": " 9. november 15:00, Kristiines palun.",
+            "assistant": "Vahva! Kas teile sobib 9. november kell 15:00 Kristiines? Palun jätke oma nimi ja kontakttelefon.\nBOOKING_CONFIRMED|haircut|Juukselõikus|2024-11-09 15:00|kristiine|Kristiines|"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:34.619125",
+            "user": "",
+            "assistant": "Robin, palun jätke oma telefoninumber.\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: fdbfb203"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:40.720585",
+            "user": " Ma sain selle",
+            "assistant": "Suurepärane! Kas on midagi veel, millega ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:44.036936",
+            "user": " meie aeg tagasi siis",
+            "assistant": "Vabandust, ma ei saa aru. Kas saaksite oma küsimust ümber sõnastada?"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:48.455919",
+            "user": " Tegid selle ümber selle peale nagu selle peale tegid mingi",
+            "assistant": "Vabandust, ma ei saa aru, mida sa mõtled. Kas sa soovid oma broneeringut muuta või tühistada? Broneeringu number on fdbfb203.\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: a8ccf749"
+          },
+          {
+            "timestamp": "2025-11-08T08:17:59.444820",
+            "user": " Sinu käes oli.",
+            "assistant": "Vabandust, ma ei saa aru. Kas sa soovid oma broneeringut muuta või tühistada?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 875efc48"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:13.232933",
+            "user": " Filma. Ei väsinud. Siin kuradi noh. Ma ei soovi seda tüüpi.",
+            "assistant": "Vabandust, ma ei saa aru. Kas sa soovid oma broneeringut muuta või tühistada?"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:25.904759",
+            "user": " Ma ei soovi seda muuta.",
+            "assistant": "Selge. Kas sa soovid broneeringu tühistada?"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:35.502656",
+            "user": " Ei.",
+            "assistant": "Kas sa soovid uue aja broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:43.110358",
+            "user": " Ei.",
+            "assistant": "Kas sa soovid midagi muud?"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:49.507345",
+            "user": " Ei.",
+            "assistant": "Kas sa soovid veel midagi?"
+          },
+          {
+            "timestamp": "2025-11-08T08:18:56.200531",
+            "user": " Ei.",
+            "assistant": "Selge. Kui sul hiljem on küsimusi või soovid broneeringut teha, siis võta meiega ühendust!"
+          },
+          {
+            "timestamp": "2025-11-08T08:44:39.375673",
+            "user": "Millal see sitt juba läbi saab?",
+            "assistant": "Vabandust, ma ei saa aru, mida sa mõtled. Kas sa soovid broneeringut teha või sul on küsimus meie teenuste kohta?"
+          },
+          {
+            "timestamp": "2025-11-08T08:44:55.192443",
+            "user": " Tere! Mul on hea meel, et oma teenused lõpetati",
+            "assistant": "Vabandust, ma ei saa aru, mida sa mõtled. Kas sa soovid broneeringut teha või sul on küsimus meie teenuste kohta?"
+          },
+          {
+            "timestamp": "2025-11-08T08:45:10.571813",
+            "user": " kord. Mulle on ja meele tohutult. Türa sa ei saa nii taudist üldse millestki aru.",
+            "assistant": "Vabandust, ma ei saa aru, mida sa mõtled. Kas sa soovid broneeringut teha või sul on küsimus meie teenuste kohta?"
+          }
+        ]
+      },
+      {
+        "client_id": "ea0cb92c-600d-4791-a564-ab7c04b76fbf",
+        "started_at": "2025-11-08T08:48:38.688597",
+        "last_interaction": "2025-11-08T08:49:12.365481",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T08:48:38.688634",
+            "user": "Tere, ma sooviks broneerida juukselõikust.",
+            "assistant": "Tere! Hea meel aidata. Millisel kuupäeval ja kellaajal te juukselõikust sooviksite?"
+          },
+          {
+            "timestamp": "2025-11-08T08:48:55.814625",
+            "user": " Võimalusel tahaks palun 9. novembril 14:00.",
+            "assistant": "9. november kell 14:00 sobib meile. Kas soovite broneerida Kesklinna või Kristiine asukohta?"
+          },
+          {
+            "timestamp": "2025-11-08T08:49:12.365460",
+            "user": " Kesklinna, palun.",
+            "assistant": "Väga hea. Kas saaks teie nime ja kontakttelefoni?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 2faf9aa1"
+          }
+        ]
+      },
+      {
+        "client_id": "b24a75ad-5c07-40b7-a294-d548db02df1b",
+        "started_at": "2025-11-08T08:59:28.453045",
+        "last_interaction": "2025-11-08T09:00:58.414234",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T08:59:28.453375",
+            "user": "Tere, ma sooviks juuksuri aega broneerida.",
+            "assistant": "Tere! Millist teenust te täpselt soovite? Meie valikus on juukselõikus (30min, 25€), massaaž (60min, 50€) ja tasuta esialgne konsultatsioon (15min, 0€)."
+          },
+          {
+            "timestamp": "2025-11-08T08:59:53.847410",
+            "user": " Palun massaaži.",
+            "assistant": "Ok, millist kuupäeva ja kellaaega te sooviksite?"
+          },
+          {
+            "timestamp": "2025-11-08T09:00:07.897120",
+            "user": " 21. november kell 15:30",
+            "assistant": "Kas teil on eelistatud asukoht? Valikud on Kesklinnas (Viru tänav 1, Tallinn) ja Kristiines (Mustamäe tee 5, Tallinn)."
+          },
+          {
+            "timestamp": "2025-11-08T09:00:30.437818",
+            "user": " Palun Kesklinn.",
+            "assistant": ""
+          },
+          {
+            "timestamp": "2025-11-08T09:00:58.414228",
+            "user": " Vaataks, mingi error tuli, äkki siis.",
+            "assistant": "Vabandust eelmise vea pärast! Nüüd saame jätkata. Palun andke mulle oma nimi ja kontakttelefon, et saaksin broneeringu vormistada.\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 7741fb4e"
+          }
+        ]
+      },
+      {
+        "client_id": "1e97a6b3-4064-4df4-86c2-10eb44b7a9c0",
+        "started_at": "2025-11-08T09:04:10.989254",
+        "last_interaction": "2025-11-08T09:04:52.230811",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T09:04:10.989276",
+            "user": "Tere, ma sooviks palun endale massaaži planeerida.",
+            "assistant": "Tere! Muidugi. Millisel ajal ja kuupäeval oleks Teil sobiv?"
+          },
+          {
+            "timestamp": "2025-11-08T09:04:25.496942",
+            "user": " Mulle sobis kõige paremini 10. november 12:00.",
+            "assistant": "Kas soovite seda Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T09:04:28.385285",
+            "user": " Robin",
+            "assistant": "Palun jätkake oma telefoninumbri andmisega.\n```\nTere! Palun jätkake oma telefoninumbri andmisega.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T09:04:39.146386",
+            "user": "",
+            "assistant": "5256\n```\nTere! Suurepärane. Kas te soovite massaaži Kesklinnas (Viru tänav 1, Tallinn) või Kristiines (Mustamäe tee 5, Tallinn)?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: f95919fa"
+          },
+          {
+            "timestamp": "2025-11-08T09:04:52.230795",
+            "user": " 5 2 5 9 ja sooviks palun kesklinnas.",
+            "assistant": "```\nTere! Suurepärane. Kas te soovite massaaži Kesklinnas (Viru tänav 1, Tallinn) või Kristiines (Mustamäe tee 5, Tallinn)?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: f95919fa"
+          }
+        ]
+      },
+      {
+        "client_id": "70e09b70-d510-4e7c-93e8-14caee48776b",
+        "started_at": "2025-11-08T09:05:15.374335",
+        "last_interaction": "2025-11-08T09:06:06.752155",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T09:05:15.374391",
+            "user": "Tere, ma sooviks palun massaaži.",
+            "assistant": "Tere! Millal te massaaži sooviksite? Palun valige kuupäev ja kellaaeg."
+          },
+          {
+            "timestamp": "2025-11-08T09:05:31.542180",
+            "user": " Sooviksin massaaži, palun 10. november 12:00.",
+            "assistant": "Kas teil on eelistatud asukoht – Kesklinn või Kristiine?"
+          },
+          {
+            "timestamp": "2025-11-08T09:05:42.185731",
+            "user": " Kesklinn, palun.",
+            "assistant": "Vaja on veel teie nimi ja telefoninumber.\n```\nTere! Palun sisestage oma nimi ja telefoninumber, et saaksin broneeringu vormistada.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T09:06:06.752131",
+            "user": " Minu nimi on Robin ja telefoninumber on 5259626.",
+            "assistant": "Suurepärane, Robin! Teie broneering on kinnitatud: massaaž Kesklinnas (Viru tänav 1, Tallinn) 10. novembril kell 12:00. Teie telefoninumber on 5259626. Kas see on õige?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 80d98393"
+          }
+        ]
+      },
+      {
+        "client_id": "58b140e2-d175-4299-88e2-e1c10d122a52",
+        "started_at": "2025-11-08T09:11:08.145065",
+        "last_interaction": "2025-11-08T09:11:19.668549",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T09:11:08.145100",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T09:11:19.668524",
+            "user": " Ma sooviksin massaaži.",
+            "assistant": "Väga hea! Millisel ajal ja kuupäeval te massaaži soovite? Palun valige ka asukoht.\n```\nTere! Millist kuupäeva ja kellaaega te soovite? Valige ka asukoht: Kesklinn (Viru tänav 1) või Kristiine (Mustamäe tee 5).\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 2fedfcc5"
+          }
+        ]
+      },
+      {
+        "client_id": "76c35623-0b74-4c7d-97fb-dbbdc5aef582",
+        "started_at": "2025-11-08T09:16:30.002744",
+        "last_interaction": "2025-11-08T09:17:32.627010",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T09:16:30.002765",
+            "user": "Tere, ma sooviks broneerida massaaži.",
+            "assistant": "Millisel ajal soovite massaaži broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T09:16:43.060195",
+            "user": " Äkki 9. november 16:30?",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T09:16:51.419774",
+            "user": " Kristiines, palun.",
+            "assistant": "Palun andke oma nimi.\n```\nPalun andke oma nimi.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T09:17:03.878887",
+            "user": " Robin",
+            "assistant": "Ja teie kontakttelefon?"
+          },
+          {
+            "timestamp": "2025-11-08T09:17:14.398244",
+            "user": " 5259626",
+            "assistant": "Kas kinnitate: Massaaž 9. november kell 16:30 Kristiines, Robin, tel 5259626?"
+          },
+          {
+            "timestamp": "2025-11-08T09:17:32.626993",
+            "user": " Jah, just.",
+            "assistant": "Suurepärane!\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: b4f100d2"
+          }
+        ]
+      },
+      {
+        "client_id": "7a258ede-75aa-476b-ade1-31f1d4b88ef0",
+        "started_at": "2025-11-08T09:37:46.845047",
+        "last_interaction": "2025-11-08T09:40:50.566073",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T09:37:46.845071",
+            "user": "Kuidas on teie hindadega lood?",
+            "assistant": "Tere! Juukselõikus maksab 25€, massaaž 50€ ja tasuta esialgne konsultatsioon on 0€.\nKas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T09:38:12.815018",
+            "user": " Kas konsultatsioon on tasuta siis?",
+            "assistant": "Jah, tasuta esialgne konsultatsioon on 15min. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T09:38:29.742295",
+            "user": " Ja kui kaua massaaž kestab?",
+            "assistant": ""
+          },
+          {
+            "timestamp": "2025-11-08T09:38:49.601314",
+            "user": " Kui kaua massaaž kestab?",
+            "assistant": "Massaaž kestab 60 minutit. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T09:39:08.803334",
+            "user": " Millised on lahtiolekuajad?",
+            "assistant": ""
+          },
+          {
+            "timestamp": "2025-11-08T09:39:28.945930",
+            "user": " Tahaks lahtioleku aegade kohta teada.",
+            "assistant": "Oleme avatud E-N 9:00-18:00, reede 9:00-17:00, laupäev 10:00-15:00. Pühapäeviti oleme suletud. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T09:40:04.562903",
+            "user": " Pane siis eurott ja esimesse ritta pane",
+            "assistant": "Vabandust, ma ei saa aru, mida te silmasite. Kas te soovite aega broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T09:40:46.288335",
+            "user": " Meil on see V2, mis sa tegid onju? Nii.",
+            "assistant": "Vabandust, ma ei saa aru, mida te silmasite. Kas te soovite aega broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T09:40:50.566050",
+            "user": " Seda see see on meil ei kasuta.",
+            "assistant": "Kas te soovite aega broneerida? Kui jah, siis alustame teenuse valimisest. Pakume juukselõikust, massaaži ja konsultatsiooni."
+          }
+        ]
+      },
+      {
+        "client_id": "960cf80f-f786-4cc0-b333-d4bb5deb3dba",
+        "started_at": "2025-11-08T11:22:35.522274",
+        "last_interaction": "2025-11-08T11:31:28.647516",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T11:22:35.522306",
+            "user": "Tere päevast, sooviks juuksuriaega.",
+            "assistant": "Tere! Millisel ajal soovite juuksuriaega?"
+          },
+          {
+            "timestamp": "2025-11-08T11:22:59.015385",
+            "user": " Pane pakk tagasi siis. Esmaspäeval. Pane pakk tagasi. Tere. Tere.",
+            "assistant": "Vabandust, ma ei saanud aru. Kas saaksite oma soovi korrata? Kas soovite juukselõikust esmaspäeval?"
+          },
+          {
+            "timestamp": "2025-11-08T11:25:38.315186",
+            "user": "Tere, kui palju maksab massaaž?",
+            "assistant": "Massaaž maksab 50€. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T11:27:04.215461",
+            "user": "Kas nüüd töötad?",
+            "assistant": "Jah, ma töötan ja olen valmis aitama. Kas soovite broneerida massaaži või juukselõikust? Või ehk soovite esialgset tasuta konsultatsiooni?"
+          },
+          {
+            "timestamp": "2025-11-08T11:27:23.609562",
+            "user": " Kasutatud asjadest ma ei ütle kunagi ära.",
+            "assistant": "Vabandust, ma ei saa aru, kuidas see broneeringuga seotud on. Kas soovite broneerida aega juukselõikuseks, massaažiks või konsultatsiooni jaoks?\n```\nTere! Kas soovite broneerida aega juukselõikuseks, massaažiks või konsultatsiooni jaoks?\n```"
+          },
+          {
+            "timestamp": "2025-11-08T11:27:33.157893",
+            "user": " kasutatud asjad",
+            "assistant": "Vabandust, ma ei saa aru, kuidas see broneeringuga seotud on. Kas soovite broneerida aega juukselõikuseks, massaažiks või konsultatsiooni jaoks?\n```\nTere! Millist teenust te soovite broneerida?\n```"
+          },
+          {
+            "timestamp": "2025-11-08T11:31:28.647498",
+            "user": "Tere.",
+            "assistant": "Tere! Kas soovite broneerida aega juukselõikuseks, massaažiks või konsultatsiooni jaoks?\n```"
+          }
+        ]
+      },
+      {
+        "client_id": "d9af644b-f4f4-4d0d-a8dd-045efa70d5a9",
+        "started_at": "2025-11-08T11:34:20.583506",
+        "last_interaction": "2025-11-08T11:35:34.218554",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T11:34:20.583575",
+            "user": "Tere, soovin panna juuksuriaega.",
+            "assistant": "Tere! Millisel ajal soovite juuksuriaega?"
+          },
+          {
+            "timestamp": "2025-11-08T11:34:32.464860",
+            "user": " 9. november 15:30",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T11:34:40.353066",
+            "user": " Kristiines, palun.",
+            "assistant": "Palun andke oma nimi.\n```\nPalun andke oma nimi.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T11:34:57.132529",
+            "user": " Minu nimi on Robin ja minu telefoninumber on 5259626.",
+            "assistant": "Kas kinnitate: Juukselõikus 9. november kell 15:30 Kristiines, Robin, tel 5259626?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: cca38ba1"
+          },
+          {
+            "timestamp": "2025-11-08T11:35:28.480212",
+            "user": " Mis seal maksma muidu läheb?",
+            "assistant": "Juukselõikuse hind on 25€. Kas kinnitate broneeringu?\n```\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: dcb682b5"
+          },
+          {
+            "timestamp": "2025-11-08T11:35:34.218531",
+            "user": "",
+            "assistant": ""
+          }
+        ]
+      },
+      {
+        "client_id": "0f78c918-43b5-4d47-a5f3-d117c689cfce",
+        "started_at": "2025-11-08T11:45:12.943732",
+        "last_interaction": "2025-11-08T11:46:29.250309",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T11:45:12.943744",
+            "user": "Tere, sooviks juuksurisse minna.",
+            "assistant": "Tere! Millisel ajal soovitakse juukselõikust?"
+          },
+          {
+            "timestamp": "2025-11-08T11:45:26.395038",
+            "user": " Tere, täna kell 15:30.",
+            "assistant": "Vabandust, aga täna kell 15:30 on kõik ajad juba hõivatud. Kas sobiks mõni teine aeg?"
+          },
+          {
+            "timestamp": "2025-11-08T11:45:43.607490",
+            "user": " Kas homme 14:30 sobib?",
+            "assistant": "Homme kell 14:30 sobib juukselõikuseks. Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T11:46:01.621839",
+            "user": " Kes klinas, palun?",
+            "assistant": "Palun andke oma nimi."
+          },
+          {
+            "timestamp": "2025-11-08T11:46:11.772560",
+            "user": " Robin, ja telefoninumber on 5259626.",
+            "assistant": "Kas kinnitate: Juukselõikus homme kell 14:30 Kesklinnas, Robin, tel 5259626?"
+          },
+          {
+            "timestamp": "2025-11-08T11:46:29.250292",
+            "user": " Jah, just.",
+            "assistant": "Suurepärane!\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 731593b4"
+          }
+        ]
+      },
+      {
+        "client_id": "db40b89e-85c6-416c-aef1-32f8720d7278",
+        "started_at": "2025-11-08T11:54:32.270192",
+        "last_interaction": "2025-11-08T11:55:07.647750",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T11:54:32.270213",
+            "user": "Tere, sooviks palun massaaži.",
+            "assistant": "Tere! Millisel ajal soovitakse massaaži?"
+          },
+          {
+            "timestamp": "2025-11-08T11:54:46.258604",
+            "user": " Äkki homme 9. novembril 17:30?",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T11:54:54.431800",
+            "user": " Kesklinnas, palun.",
+            "assistant": "Palun andke oma nimi.\n```\nPalun andke oma nimi.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T11:55:07.647728",
+            "user": " Minu nimi on Robin ja minu telefoninumber on 5259626.",
+            "assistant": "Kas kinnitate: Massaaž homme kell 17:30 Kesklinnas, Robin, tel 5259626?\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 7074db8b"
+          }
+        ]
+      },
+      {
+        "client_id": "25609437-25ef-48bb-be4f-1b20d7616da0",
+        "started_at": "2025-11-08T12:03:21.536514",
+        "last_interaction": "2025-11-08T12:04:27.227331",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:03:21.536536",
+            "user": "Tere, ma tahaks panna mul juuksuriaega.",
+            "assistant": "Tere! Millist teenust te soovite? Valikud on: juukselõikus, massaaž või konsultatsioon."
+          },
+          {
+            "timestamp": "2025-11-08T12:03:36.227350",
+            "user": " Juukselõikus, palun.",
+            "assistant": "Millisel ajal sooviksite juukselõikuse broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T12:03:49.002629",
+            "user": " homme ehk siis 9. november kell 14:00",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T12:03:57.001006",
+            "user": " Kesklinnas, palun.",
+            "assistant": "Palun andke oma nimi."
+          },
+          {
+            "timestamp": "2025-11-08T12:04:04.459348",
+            "user": " Henrik",
+            "assistant": "Ja teie kontakttelefon?"
+          },
+          {
+            "timestamp": "2025-11-08T12:04:12.063538",
+            "user": " 1 2 3 4 5",
+            "assistant": "Kas kinnitate: Juukselõikus homme kell 14:00 Kesklinnas, Henrik, tel 12345?"
+          },
+          {
+            "timestamp": "2025-11-08T12:04:27.227314",
+            "user": " Jah.",
+            "assistant": "Suurepärane!\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 35858479"
+          }
+        ]
+      },
+      {
+        "client_id": "2079346d-482a-4b37-9982-57b331ed65c3",
+        "started_at": "2025-11-08T12:09:03.339621",
+        "last_interaction": "2025-11-08T12:10:01.043517",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:09:03.339654",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:09:15.743884",
+            "user": " Sooviks panna massaaži aega 9. november kell 16:15.",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T12:09:24.461394",
+            "user": " Kristiines, palun.",
+            "assistant": "Palun andke oma nimi.\n```\nPalun andke oma nimi.\n```"
+          },
+          {
+            "timestamp": "2025-11-08T12:09:34.027993",
+            "user": " Robin",
+            "assistant": "Ja teie kontakttelefon?"
+          },
+          {
+            "timestamp": "2025-11-08T12:09:41.627247",
+            "user": " 0000",
+            "assistant": "Kas kinnitate: Massaaž 2025-11-09 16:15 Kristiines, Robin, tel 0000?\n```"
+          },
+          {
+            "timestamp": "2025-11-08T12:10:01.043496",
+            "user": " Ja kinnitan.",
+            "assistant": "Suurepärane!\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: 2d82d62a"
+          }
+        ]
+      },
+      {
+        "client_id": "634ad527-e63a-4a24-9e99-677de808643f",
+        "started_at": "2025-11-08T12:19:34.273286",
+        "last_interaction": "2025-11-08T12:20:38.680689",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:19:34.273307",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:19:42.902968",
+            "user": " Ma sooviksin massaaži.",
+            "assistant": "Millisel ajal ja kuupäeval soovitakse massaaži?"
+          },
+          {
+            "timestamp": "2025-11-08T12:19:56.650565",
+            "user": " Äkki 10. novembril kell 12:15?",
+            "assistant": "Kas Kesklinnas või Kristiines?"
+          },
+          {
+            "timestamp": "2025-11-08T12:20:04.334978",
+            "user": " Kesklinnas",
+            "assistant": "Palun andke oma nimi."
+          },
+          {
+            "timestamp": "2025-11-08T12:20:10.962766",
+            "user": " Robin",
+            "assistant": "Ja teie kontakttelefon?"
+          },
+          {
+            "timestamp": "2025-11-08T12:20:19.174749",
+            "user": " 568523",
+            "assistant": "Kas kinnitate: Massaaž 10. novembril kell 12:15 Kesklinnas, Robin, tel 568523?"
+          },
+          {
+            "timestamp": "2025-11-08T12:20:38.680636",
+            "user": " Jah, kinnitan.",
+            "assistant": "Suurepärane!\n\nTeie broneering on salvestatud ja ootab kinnitust. Broneeringu number: e8a4be8c"
+          }
+        ]
+      }
+    ]
+  },
+  "bookings": {
+    "pending": [],
+    "confirmed": [
+      {
+        "booking_id": "731593b4-b094-4f16-b9b5-2b498b908f52",
+        "client_id": "0f78c918-43b5-4d47-a5f3-d117c689cfce",
+        "service_id": "haircut",
+        "service_name": "Juukselõikus",
+        "date_time": "2025-11-09 14:30",
+        "location_id": "downtown",
+        "location_name": "Kesklinnas",
+        "customer_name": "Robin",
+        "customer_phone": "5259626",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T11:46:29.247686",
+        "status": "confirmed",
+        "confirmed_at": "2025-11-08T11:46:55.921187"
+      },
+      {
+        "booking_id": "7074db8b-fa9d-4997-acc0-92807b9e5ba4",
+        "client_id": "db40b89e-85c6-416c-aef1-32f8720d7278",
+        "service_id": "massage",
+        "service_name": "Massaaž",
+        "date_time": "2025-11-09 17:30",
+        "location_id": "downtown",
+        "location_name": "Kesklinnas",
+        "customer_name": "Robin",
+        "customer_phone": "5259626",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T11:55:07.645286",
+        "status": "confirmed",
+        "confirmed_at": "2025-11-08T11:55:36.080790"
+      },
+      {
+        "booking_id": "35858479-f097-4286-81d6-58b3aea162c7",
+        "client_id": "25609437-25ef-48bb-be4f-1b20d7616da0",
+        "service_id": "haircut",
+        "service_name": "Juukselõikus",
+        "date_time": "2025-11-09 14:00",
+        "location_id": "downtown",
+        "location_name": "Kesklinnas",
+        "customer_name": "Henrik",
+        "customer_phone": "12345",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T12:04:27.223092",
+        "status": "confirmed",
+        "confirmed_at": "2025-11-08T12:04:42.285149"
+      },
+      {
+        "booking_id": "2d82d62a-1034-475f-af3c-3e99f5adab29",
+        "client_id": "2079346d-482a-4b37-9982-57b331ed65c3",
+        "service_id": "massage",
+        "service_name": "Massaaž",
+        "date_time": "2025-11-09 16:15",
+        "location_id": "suburb",
+        "location_name": "Kristiines",
+        "customer_name": "Robin",
+        "customer_phone": "0000",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T12:10:01.038012",
+        "status": "confirmed",
+        "confirmed_at": "2025-11-08T12:10:20.299848"
+      },
+      {
+        "booking_id": "e8a4be8c-393e-44bf-85e8-7a1957c9aa3b",
+        "client_id": "634ad527-e63a-4a24-9e99-677de808643f",
+        "service_id": "massage",
+        "service_name": "Massaaž",
+        "date_time": "2025-11-10 12:15",
+        "location_id": "downtown",
+        "location_name": "Kesklinnas",
+        "customer_name": "Robin",
+        "customer_phone": "568523",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T12:20:38.674721",
+        "status": "confirmed",
+        "confirmed_at": "2025-11-08T12:21:04.082662"
+      }
+    ],
+    "cancelled": [
+      {
+        "booking_id": "41862089-0733-433a-803f-4e253e433be3",
+        "client_id": "136c731c-a2c6-4d3a-849b-61d4537cd2be",
+        "service_id": "massage",
+        "service_name": "Massaaž",
+        "date_time": "2025-11-12 10:00",
+        "location_id": "suburb",
+        "location_name": "Kristiines",
+        "customer_name": "Test User",
+        "customer_phone": "+372 1234 5678",
+        "customer_email": null,
+        "notes": null,
+        "created_at": "2025-11-08T11:39:06.494860",
+        "status": "cancelled",
+        "cancelled_at": "2025-11-08T11:39:06.495544",
+        "cancellation_reason": "Klient tühistas"
+      }
+    ]
+  }
+}

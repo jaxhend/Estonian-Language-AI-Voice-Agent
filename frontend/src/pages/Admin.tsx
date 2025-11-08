@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { format, parse, isSameDay, addDays, startOfWeek, endOfWeek, eachDayOfInterval, isToday } from "date-fns";
 
+const API_URL = "http://127.0.0.1:8000/api";
+
 interface Booking {
   id: number;
   name: string;
@@ -34,65 +36,105 @@ type CalendarView = "day" | "week" | "month";
 const Admin = () => {
   const { toast } = useToast();
   const today = new Date();
-  const tomorrow = addDays(today, 1);
-  const nextWeek = addDays(today, 7);
 
-  const [bookings, setBookings] = useState<Booking[]>([
-    {
-      id: 1,
-      name: "John Doe",
-      service: "Haircut",
-      time: "2:00 PM",
-      location: "Downtown Branch",
-      status: "pending",
-      date: format(tomorrow, "yyyy-MM-dd"),
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      service: "Consultation",
-      time: "3:30 PM",
-      location: "Main Office",
-      status: "confirmed",
-      date: format(today, "yyyy-MM-dd"),
-    },
-    {
-      id: 3,
-      name: "Bob Johnson",
-      service: "Spa Treatment",
-      time: "10:00 AM",
-      location: "Wellness Center",
-      status: "pending",
-      date: format(tomorrow, "yyyy-MM-dd"),
-    },
-    {
-      id: 4,
-      name: "Alice Williams",
-      service: "Massage",
-      time: "2:00 PM",
-      location: "Spa Branch",
-      status: "confirmed",
-      date: format(tomorrow, "yyyy-MM-dd"),
-    },
-    {
-      id: 5,
-      name: "Charlie Brown",
-      service: "Dental Checkup",
-      time: "9:00 AM",
-      location: "Clinic A",
-      status: "pending",
-      date: format(nextWeek, "yyyy-MM-dd"),
-    },
-  ]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
   const [selectedDate, setSelectedDate] = useState<Date>(today);
   const [view, setView] = useState<CalendarView>("week");
 
+  // Wrap fetch logic in a useCallback to ensure it has a stable identity
+  const fetchBookings = useCallback(async () => {
+    try {
+      const [pendingRes, confirmedRes, cancelledRes] = await Promise.all([
+        fetch(`${API_URL}/bookings/pending`),
+        fetch(`${API_URL}/bookings/confirmed`),
+        fetch(`${API_URL}/bookings/cancelled`),
+      ]);
+
+      const pending = await pendingRes.json();
+      const confirmed = await confirmedRes.json();
+      const cancelled = await cancelledRes.json();
+
+      interface APIBooking {
+        booking_id: string;
+        customer_name: string;
+        service_name: string;
+        date_time: string;
+        location_name: string;
+        status: "pending" | "confirmed" | "cancelled";
+      }
+
+      // Transform API data to match the UI format
+      const transformBooking = (b: APIBooking, index: number): Booking => ({
+        id: index + 1,
+        name: b.customer_name,
+        service: b.service_name,
+        time: b.date_time.split(' ')[1] || "12:00", // Keep 24-hour format
+        location: b.location_name,
+        status: b.status,
+        date: b.date_time.split(' ')[0], // Extract date
+      });
+
+      const allBookings = [
+        ...pending.bookings.map((b: APIBooking, i: number) => transformBooking(b, i)),
+        ...confirmed.bookings.map((b: APIBooking, i: number) => transformBooking(b, pending.bookings.length + i)),
+        ...cancelled.bookings.map((b: APIBooking, i: number) => transformBooking(b, pending.bookings.length + confirmed.bookings.length + i)),
+      ];
+
+      setBookings(allBookings);
+    } catch (error) {
+      console.error("Failed to fetch bookings:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load bookings from server",
+        variant: "destructive",
+      });
+    }
+  }, [toast]);
+
+
+  // Fetch bookings from API on initial load
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
   const handleStatusChange = (id: number, newStatus: "confirmed" | "cancelled") => {
-    setBookings(bookings.map((booking) => (booking.id === id ? { ...booking, status: newStatus } : booking)));
-    toast({
-      title: `Booking ${newStatus}`,
-      description: `Booking #${id} has been ${newStatus}.`,
+    const booking = bookings.find(b => b.id === id);
+    if (!booking) return;
+
+    // The backend expects the booking_id as a string.
+    const bookingIdToSend = String(booking.id);
+
+    const apiCall = newStatus === "confirmed"
+      ? fetch(`${API_URL}/bookings/confirm`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ booking_id: bookingIdToSend }),
+        })
+      : fetch(`${API_URL}/bookings/cancel`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ booking_id: bookingIdToSend, reason: "Cancelled by admin" }),
+        });
+
+    apiCall.then(async (response) => {
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || `Failed to ${newStatus} booking`);
+      }
+      // Refetch all bookings to ensure UI is in sync with the backend
+      await fetchBookings();
+      toast({
+        title: `Booking ${newStatus}`,
+        description: `Booking #${id} has been ${newStatus}.`,
+      });
+    }).catch((error) => {
+      console.error("Failed to update booking:", error);
+      toast({
+        title: "Error",
+        description: `Failed to ${newStatus} booking`,
+        variant: "destructive",
+      });
     });
   };
 
@@ -129,10 +171,10 @@ const Admin = () => {
     cancelled: bookings.filter((b) => b.status === "cancelled").length,
   };
 
-  // Time slots from 9 AM to 5 PM
+  // Time slots from 09:00 to 17:00 (24-hour format, hourly)
   const timeSlots = Array.from({ length: 9 }, (_, i) => {
     const hour = i + 9;
-    return `${hour > 12 ? hour - 12 : hour}:00 ${hour >= 12 ? "PM" : "AM"}`;
+    return `${hour.toString().padStart(2, '0')}:00`;
   });
 
   // Get week range
@@ -258,7 +300,7 @@ const Admin = () => {
                     >
                       <div className="p-2 text-xs text-muted-foreground text-right pr-3 border-r">{time}</div>
                       {weekDays.map((day) => {
-                        const dayBookings = getBookingsForDate(day).filter((b) => b.time === time);
+                        const dayBookings = getBookingsForDate(day).filter((b) => b.time.startsWith(time.split(':')[0]));
                         return (
                           <div
                             key={`${day.toISOString()}-${time}`}
@@ -291,7 +333,7 @@ const Admin = () => {
             {view === "day" && (
               <div>
                 {timeSlots.map((time) => {
-                  const dayBookings = getBookingsForDate(selectedDate).filter((b) => b.time === time);
+                  const dayBookings = getBookingsForDate(selectedDate).filter((b) => b.time.startsWith(time.split(':')[0]));
                   return (
                     <div key={time} className="flex border-b" style={{ minHeight: "60px" }}>
                       <div className="w-20 p-2 text-xs text-muted-foreground text-right border-r">{time}</div>
