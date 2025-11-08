@@ -70,4 +70,6 @@ The models for this project run on a high-performance compute environment genero
 <img width="1030" height="1030" alt="image" src="https://github.com/user-attachments/assets/f652cbbd-d8b9-4df2-8a16-5dd87fb02550" />
 <img width="1031" height="1036" alt="image" src="https://github.com/user-attachments/assets/0334a3a1-b3b5-4bae-a7c5-cefcb8ad08a2" />
 
+### Youtube video of the presentation
+[Presentation](https://www.youtube.com/watch?v=gE2C2v7KWaQ)
 
