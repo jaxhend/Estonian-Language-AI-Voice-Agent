@@ -54,7 +54,7 @@ const Analytics = () => {
     { label: "Total Bookings", value: stats.total_bookings, icon: Calendar, color: "text-primary" },
     { label: "Completed", value: stats.completed_bookings, icon: CheckCircle2, color: "text-success" },
     { label: "Active Users", value: stats.active_users, icon: Users, color: "text-secondary" },
-    { label: "Avg Conversation Time", value: stats.avg_response_time, icon: Clock, color: "text-accent" },
+    { label: "Admin Response Time", value: stats.avg_response_time, icon: Clock, color: "text-accent" },
   ];
 
   const bookingChartConfig = {
