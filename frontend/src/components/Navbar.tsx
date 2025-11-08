@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <Mic className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-foreground">AI Voice Agent</span>
+            <span className="text-xl font-bold text-foreground">Estonian AI Voice Agent</span>
           </div>
           
           <div className="flex gap-1">

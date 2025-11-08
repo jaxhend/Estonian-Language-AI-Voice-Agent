@@ -20,8 +20,8 @@ const Voice = () => {
     stopListening,
     connectSocket,
     sendText,
+      messages,
   } = useVoiceSocket();
-  const [messages, setMessages] = useState<Message[]>([]);
   const [intent, setIntent] = useState<any>(null);
 
   useEffect(() => {
@@ -37,27 +37,13 @@ const Voice = () => {
   const handleVoiceClick = () => {
     if (isListening) {
       stopListening();
+      if (transcript) {
+        sendText(transcript);
+      }
     } else {
       startListening();
     }
   };
-
-  useEffect(() => {
-    if (transcript) {
-      const userMessage = transcript;
-      const newMessages: Message[] = [
-        ...messages,
-        {
-          role: "user",
-          content: userMessage,
-          timestamp: getCurrentTime(),
-        },
-      ];
-      setMessages(newMessages);
-      // The transcript is now sent via the websocket in the hook, so no need to send it here
-      // sendText(transcript);
-    }
-  }, [transcript]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -66,7 +52,7 @@ const Voice = () => {
         <div className="w-full max-w-4xl flex flex-col items-center gap-8">
           <div className="text-center space-y-2 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              AI Voice Assistant
+              Estonian AI Voice Assistant
             </h1>
             <p className="text-lg text-muted-foreground">
               Press the button and tell me how I can help you

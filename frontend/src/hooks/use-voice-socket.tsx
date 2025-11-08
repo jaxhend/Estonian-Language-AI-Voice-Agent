@@ -1,116 +1,131 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { v4 as uuidv4 } from "uuid";
+import {useCallback, useEffect, useRef, useState} from "react";
+import {v4 as uuidv4} from "uuid";
 
 const WS_URL = "ws://127.0.0.1:8000/ws/";
 
 export const useVoiceSocket = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [transcript, setTranscript] = useState("");
-  const [isListening, setIsListening] = useState(false);
-  const isListeningRef = useRef<boolean>(false);
-  const socket = useRef<WebSocket | null>(null);
-  const client_id = useRef<string>(uuidv4());
-  const audioContext = useRef<AudioContext | null>(null);
-  const processor = useRef<ScriptProcessorNode | null>(null);
-  const source = useRef<MediaStreamAudioSourceNode | null>(null);
-  const keepAliveGain = useRef<GainNode | null>(null);
-  const audioQueue = useRef<Uint8Array[]>([]);
-  const isPlayingAudio = useRef<boolean>(false);
-  const audioElement = useRef<HTMLAudioElement | null>(null);
-  const receivingAudio = useRef<boolean>(false);
+    const [isConnected, setIsConnected] = useState(false);
+    const [transcript, setTranscript] = useState("");
+    const [isListening, setIsListening] = useState(false);
+    const isListeningRef = useRef<boolean>(false);
+    const socket = useRef<WebSocket | null>(null);
+    const client_id = useRef<string>(uuidv4());
+    const audioContext = useRef<AudioContext | null>(null);
+    const processor = useRef<ScriptProcessorNode | null>(null);
+    const source = useRef<MediaStreamAudioSourceNode | null>(null);
+    const keepAliveGain = useRef<GainNode | null>(null);
+    const audioQueue = useRef<Uint8Array[]>([]);
+    const isPlayingAudio = useRef<boolean>(false);
+    const audioElement = useRef<HTMLAudioElement | null>(null);
+    const receivingAudio = useRef<boolean>(false);
+    const [messages, setMessages] = useState<{
+        role: "user" | "assistant";
+        content: string;
+        timestamp: string
+    }[]>([]);
 
-  const playAudioChunks = useCallback(async (chunks: Uint8Array[]) => {
-    if (chunks.length === 0) return;
+    const playAudioChunks = useCallback(async (chunks: Uint8Array[]) => {
+        if (chunks.length === 0) return;
 
-    console.log(`🔊 Playing ${chunks.length} audio chunks combined`);
+        console.log(`🔊 Playing ${chunks.length} audio chunks combined`);
 
-    // Concatenate all chunks into a single blob
-    const audioBlob = new Blob(chunks, { type: 'audio/mpeg' });
-    const audioUrl = URL.createObjectURL(audioBlob);
+        // Concatenate all chunks into a single blob
+        const audioBlob = new Blob(chunks, {type: 'audio/mpeg'});
+        const audioUrl = URL.createObjectURL(audioBlob);
 
-    // Stop any currently playing audio
-    if (audioElement.current) {
-      audioElement.current.pause();
-      audioElement.current = null;
-    }
-
-    const audio = new Audio(audioUrl);
-    audioElement.current = audio;
-
-    return new Promise<void>((resolve) => {
-      audio.onended = () => {
-        console.log("🔊 Audio playback completed");
-        URL.revokeObjectURL(audioUrl);
-        audioElement.current = null;
-        resolve();
-      };
-      audio.onerror = (e) => {
-        console.error("Audio play failed:", e);
-        URL.revokeObjectURL(audioUrl);
-        audioElement.current = null;
-        resolve();
-      };
-      audio.play().catch(e => {
-        console.error("Audio play failed:", e);
-        URL.revokeObjectURL(audioUrl);
-        resolve();
-      });
-    });
-  }, []);
-
-  const connectSocket = useCallback(() => {
-    if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      console.log("WebSocket is already connected.");
-      return;
-    }
-
-    console.log(`Connecting to WebSocket with client ID: ${client_id.current}`);
-    socket.current = new WebSocket(`${WS_URL}${client_id.current}`);
-    socket.current.binaryType = "arraybuffer";
-
-    socket.current.onopen = () => {
-      setIsConnected(true);
-      console.log("WebSocket connected");
-    };
-
-    socket.current.onclose = (event) => {
-      setIsConnected(false);
-      console.log("WebSocket disconnected:", event.reason);
-    };
-
-    socket.current.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    }
-
-    socket.current.onmessage = (event) => {
-        if (typeof event.data === 'string') {
-            try {
-              const message = JSON.parse(event.data);
-              if (message.text) {
-                  console.log("Received transcript:", message.text);
-                  setTranscript(message.text);
-              }
-              if (message.isFinal) {
-                  console.log("TTS stream completed, playing audio...");
-                  receivingAudio.current = false;
-                  // Play all collected audio chunks
-                  if (audioQueue.current.length > 0) {
-                    const chunks = [...audioQueue.current];
-                    audioQueue.current = [];
-                    playAudioChunks(chunks);
-                  }
-              }
-            } catch (e) {
-              console.error("Failed to parse JSON message:", event.data);
-            }
-        } else if (event.data instanceof ArrayBuffer) {
-            // Handle audio stream from server (binary data)
-            console.log("📥 Received audio chunk:", event.data.byteLength, "bytes");
-            receivingAudio.current = true;
-            audioQueue.current.push(new Uint8Array(event.data));
+        // Stop any currently playing audio
+        if (audioElement.current) {
+            audioElement.current.pause();
+            audioElement.current = null;
         }
-    };
-  }, [playAudioChunks]);
+
+        const audio = new Audio(audioUrl);
+        audioElement.current = audio;
+
+        return new Promise<void>((resolve) => {
+            audio.onended = () => {
+                console.log("🔊 Audio playback completed");
+                URL.revokeObjectURL(audioUrl);
+                audioElement.current = null;
+                resolve();
+            };
+            audio.onerror = (e) => {
+                console.error("Audio play failed:", e);
+                URL.revokeObjectURL(audioUrl);
+                audioElement.current = null;
+                resolve();
+            };
+            audio.play().catch(e => {
+                console.error("Audio play failed:", e);
+                URL.revokeObjectURL(audioUrl);
+                resolve();
+            });
+        });
+    }, []);
+
+const connectSocket = useCallback(() => {
+  if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+    console.log("WebSocket is already connected.");
+    return;
+  }
+
+  console.log(`Connecting to WebSocket with client ID: ${client_id.current}`);
+  socket.current = new WebSocket(`${WS_URL}${client_id.current}`);
+  socket.current.binaryType = "arraybuffer";
+
+  socket.current.onopen = () => {
+    setIsConnected(true);
+    console.log("WebSocket connected");
+  };
+
+  socket.current.onclose = (event) => {
+    setIsConnected(false);
+    console.log("WebSocket disconnected:", event.reason);
+  };
+
+  socket.current.onerror = (error) => {
+    console.error("WebSocket error:", error);
+  };
+
+  socket.current.onmessage = (event) => {
+    if (typeof event.data === "string") {
+      try {
+        const message = JSON.parse(event.data);
+
+        if (message.text) setTranscript(message.text);
+
+        if (message.is_final || message.isFinal) {
+          const role: "user" | "assistant" =
+            message.role === "user" ? "user" : "assistant";
+
+          setMessages((prev) => [
+            ...prev,
+            {
+              role,
+              content: message.text,
+              timestamp: new Date().toLocaleTimeString(),
+            },
+          ]);
+
+          if (role === "assistant") {
+            receivingAudio.current = false;
+            if (audioQueue.current.length > 0) {
+              const chunks = [...audioQueue.current];
+              audioQueue.current = [];
+              playAudioChunks(chunks);
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Failed to parse JSON message:", event.data);
+      }
+    } else if (event.data instanceof ArrayBuffer) {
+      console.log("📥 Received audio chunk:", event.data.byteLength, "bytes");
+      receivingAudio.current = true;
+      audioQueue.current.push(new Uint8Array(event.data));
+    }
+  };
+}, [playAudioChunks]);
 
   const disconnectSocket = () => {
     if (socket.current) {
@@ -214,23 +229,29 @@ export const useVoiceSocket = () => {
   }, []);
 
 
-  const sendText = (text: string) => {
-    if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      console.log("Sending text:", text);
-      socket.current.send(JSON.stringify({ text }));
-    } else {
-      console.error("Cannot send text, WebSocket is not connected.");
-    }
-  };
+    const sendText = (text: string) => {
+      if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+        socket.current.send(JSON.stringify({ text }));
 
-  return {
-    isConnected,
-    transcript,
-    isListening,
-    startListening,
-    stopListening,
-    sendText,
-    connectSocket,
-  };
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "user",
+            content: text,
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+      }
+    };
+
+ return {
+  isConnected,
+  transcript,
+  messages,
+  isListening,
+  startListening,
+  stopListening,
+  sendText,
+  connectSocket,
+ };
 };
-

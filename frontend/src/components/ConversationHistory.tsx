@@ -1,6 +1,7 @@
 import { Card } from "./ui/card";
 import { ScrollArea } from "./ui/scroll-area";
 import { User, Bot } from "lucide-react";
+import {useEffect, useRef} from "react";
 
 interface Message {
   role: "user" | "assistant";
@@ -13,7 +14,7 @@ interface ConversationHistoryProps {
 }
 
 const ConversationHistory = ({ messages }: ConversationHistoryProps) => {
-  if (messages.length === 0) return null;
+    if (messages.length === 0) return null;
 
   return (
     <Card className="w-full max-w-3xl p-6 shadow-[var(--shadow-card)] animate-fade-in">
@@ -22,7 +23,7 @@ const ConversationHistory = ({ messages }: ConversationHistoryProps) => {
         <span className="text-sm text-muted-foreground">({messages.length} messages)</span>
       </div>
       
-      <ScrollArea className="h-[400px] pr-4">
+      <ScrollArea className="h-[400px] pr-4 [&>[data-radix-scroll-area-viewport]]:overflow-y-scroll [&_[data-radix-scrollbar]]:opacity-100">
         <div className="space-y-4">
           {messages.map((message, index) => (
             <div

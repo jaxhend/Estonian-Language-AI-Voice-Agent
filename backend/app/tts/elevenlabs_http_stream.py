@@ -75,15 +75,38 @@ class ElevenLabsHTTPStream:
                     async for chunk in resp.content.iter_chunked(8192):
                         if chunk:
                             chunk_count += 1
-                            await bus.publish("tts.audio", TTSAudio(chunk=chunk, client_id=event.client_id))
+                            # Stream each chunk to frontend
+                            await bus.publish(
+                                "tts.audio",
+                                TTSAudio(
+                                    chunk=chunk,
+                                    client_id=event.client_id
+                                )
+                            )
                             if chunk_count <= 3:
                                 print(f"🎵 Sent audio chunk #{chunk_count}, size: {len(chunk)} bytes")
 
                     print(f"🎵 TTS stream completed for client {event.client_id}, total chunks: {chunk_count}")
 
-                    # Send final marker
+                    # ✅ Send the assistant text and final signal
                     if event.client_id in active_connections:
-                        await active_connections[event.client_id].send_json({"isFinal": True})
+                        await active_connections[event.client_id].send_json({
+                            "client_id": str(event.client_id),
+                            "role": "assistant",
+                            "text": event.text,
+                            "isFinal": True
+                        })
+
+                    # ✅ Also publish to bus (so any other subscribers can use it)
+                    await bus.publish(
+                        "tts.audio",
+                        TTSAudio(
+                            chunk=b"",
+                            client_id=event.client_id,
+                            text=event.text,
+                            is_final=True
+                        )
+                    )
 
         except Exception as e:
             print(f"❌ TTS streaming error for client {event.client_id}: {e}")

@@ -2,22 +2,17 @@ import asyncio
 import os
 from typing import AsyncGenerator
 
+from app.bus import bus
+from app.schemas.events import ClientAudio, STTFinal, STTPartial
 from dotenv import load_dotenv
 from google.cloud import speech_v2
 from google.cloud.speech_v2.types import cloud_speech
 
-from app.bus import bus
-from app.schemas.events import ClientAudio, STTFinal, STTPartial
-
 load_dotenv()
-
-
 
 class GoogleSTT:
 
     def __init__(self, client_id, recognizer_path: str | None = None, language: str = "et-EE"):
-        load_dotenv()
-
         # Configuration
         GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
         print(GOOGLE_APPLICATION_CREDENTIALS)

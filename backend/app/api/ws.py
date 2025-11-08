@@ -1,4 +1,4 @@
-import os  # <-- add this
+import os
 from dotenv import load_dotenv
 import uuid, json
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
@@ -30,6 +30,8 @@ async def on_stt_result(event: STTPartial | STTFinal):
             # Convert to dict and ensure UUID is serialized to string
             data = event.model_dump()
             data['client_id'] = str(data['client_id'])
+            if event.is_final:
+                data["role"] = "user"
             await websocket.send_json(data)
             print(f"✅ Sent STT result to client {event.client_id}")
         except Exception as e:
