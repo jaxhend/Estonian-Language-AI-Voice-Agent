@@ -882,6 +882,116 @@
             "assistant": "Juukselõikus maksab 25€.\n```\nTere! Millist teenust te soovite broneerida? Valikud on: juukselõikus, massaaž või konsultatsioon.\n```"
           }
         ]
+      },
+      {
+        "client_id": "ad93139a-a829-4d2e-832f-8d7883970e9a",
+        "started_at": "2025-11-08T12:39:38.379951",
+        "last_interaction": "2025-11-08T12:39:55.784871",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:39:38.379951",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:39:38.408575",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:39:55.765742",
+            "user": " Ma tahan juukselõikust. Ma tahan juukselõikust.",
+            "assistant": "Millisel ajal soovite juukselõikust broneerida?"
+          },
+          {
+            "timestamp": "2025-11-08T12:39:55.784871",
+            "user": " Ma tahan juukselõikust. Ma tahan juukselõikust.",
+            "assistant": "Millisel ajal soovite juukselõikust broneerida?"
+          }
+        ]
+      },
+      {
+        "client_id": "73a84651-835d-4358-b584-0a9b29abe8b6",
+        "started_at": "2025-11-08T12:40:14.641919",
+        "last_interaction": "2025-11-08T12:40:24.533982",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:40:14.641919",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:40:14.695501",
+            "user": "Tere.",
+            "assistant": "Tere! Mida ma teile täna aidata saan?"
+          },
+          {
+            "timestamp": "2025-11-08T12:40:24.488394",
+            "user": " Ma tahan broneerida aega.",
+            "assistant": "Millist teenust te soovite broneerida? Juukselõikust, massaaži või konsultatsiooni?"
+          },
+          {
+            "timestamp": "2025-11-08T12:40:24.533982",
+            "user": " Ma tahan broneerida aega.",
+            "assistant": "Millist teenust te soovite broneerida? Valikud on: juukselõikus, massaaž või konsultatsioon."
+          }
+        ]
+      },
+      {
+        "client_id": "1f4877b2-be7f-4361-8b96-d826878e4b02",
+        "started_at": "2025-11-08T12:41:01.742710",
+        "last_interaction": "2025-11-08T12:41:01.742710",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:41:01.742710",
+            "user": "Tere!",
+            "assistant": "Tere! Kuidas saan teid aidata?"
+          }
+        ]
+      },
+      {
+        "client_id": "0b6c61ca-3e4f-4753-a616-8e8ee103aa1e",
+        "started_at": "2025-11-08T12:43:02.476740",
+        "last_interaction": "2025-11-08T12:43:02.476740",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:43:02.476740",
+            "user": "Tere, palju maksab juukselõikus?",
+            "assistant": "Juukselõikus maksab 25€."
+          }
+        ]
+      },
+      {
+        "client_id": "c55e1133-7329-4178-a59f-1f74a642f16b",
+        "started_at": "2025-11-08T12:54:25.631350",
+        "last_interaction": "2025-11-08T12:55:08.763356",
+        "messages": [
+          {
+            "timestamp": "2025-11-08T12:54:25.631350",
+            "user": "Tere.",
+            "assistant": "Tere! Kuidas ma saan teid aidata?"
+          },
+          {
+            "timestamp": "2025-11-08T12:54:35.584598",
+            "user": " Kui palju maksab juukselõikus?",
+            "assistant": "Juukselõikus maksab 25€. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T12:54:47.030480",
+            "user": " Kui kaua kestab massaaž?",
+            "assistant": "Massaaž kestab 60 minutit. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T12:54:58.203141",
+            "user": " Palju maksab massaaž?",
+            "assistant": "Massaaž maksab 50€. Kas soovite broneerida aega?"
+          },
+          {
+            "timestamp": "2025-11-08T12:55:08.763356",
+            "user": " Kui kaua saab ette broneerida?",
+            "assistant": "Broneerida saab kuni 30 päeva ette. Kas soovite broneerida aega?"
+          }
+        ]
       }
     ]
   },

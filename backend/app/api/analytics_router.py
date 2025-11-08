@@ -1,10 +1,8 @@
 """
 Analytics endpoints for booking insights and statistics
 """
-from fastapi import APIRouter
-from typing import List, Dict, Any
-from datetime import datetime, timedelta
 from collections import defaultdict, Counter
+from datetime import datetime
 
 from app.services.booking_manager import (
     get_pending_bookings,
@@ -12,6 +10,7 @@ from app.services.booking_manager import (
     get_cancelled_bookings,
     load_database
 )
+from fastapi import APIRouter
 
 router = APIRouter()
 
