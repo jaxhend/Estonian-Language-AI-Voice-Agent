@@ -61,17 +61,17 @@ Follow these instructions to run the project locally.
 ### Backend
 
 The backend server handles the core logic, STT, LLM, and TTS integrations.
-### 1. Navigate to the backend directory
+#### 1. Navigate to the backend directory
 ```shell
 cd backend
 ```
 
-### 2. Install dependencies
+#### 2. Install dependencies
 ```shell
 python -m pip install -r requirements.txt
 ```
 
-### 3. Create a `.env` file in the `/backend` directory
+#### 3. Create a `.env` file in the `/backend` directory
 
 Populate it with your API keys and configuration values.
 
@@ -96,7 +96,7 @@ LOCATION=europe-west3
 RECOGNIZER_NAME=.....
 ```
 
-### 4. Run the backend server
+#### 4. Run the backend server
 ```shell
 # From inside the 'backend' directory
 python -m uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
@@ -104,20 +104,29 @@ python -m uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
-## Frontend
+### Frontend
 
 To run the frontend application:
 
-### 1. Navigate to the frontend directory
+#### 1. Navigate to the frontend directory
 ```shell
 cd frontend
 ```
 
-### 2. Start the development server
+#### 2. Start the development server
 ```shell
 npm install
 npm run dev
 ```
+
+## Infrastructure
+
+The models for this project run on a high-performance compute environment.
+
+**Provider:** Datacrunch  
+**Hardware:** 8× Nvidia A100 GPUs (admittedly overkill for this use case)
+
+For configuration details, refer to the shell scripts located in the `/llm` directory.
 
 
 ## Screenshots
