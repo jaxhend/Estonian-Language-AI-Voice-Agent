@@ -1,6 +1,6 @@
 # Estonian-Language AI Voice Agent for the Service Sector
 
-A real-time, AI-powered voice agent that provides natural, human-like customer service in Estonian, ensuring service businesses never miss a customer call.
+*A real-time, AI-powered voice agent that provides natural, human-like customer service in Estonian, ensuring service businesses never miss a customer call.*
 
 ## Watch it in Action
 
@@ -22,10 +22,10 @@ We have developed an Estonian-language AI voice agent that answers customer call
 ### Key Capabilities
 
 The voice agent is able to:
-*   24/7 Call Handling: Answers calls instantly in natural, fluent Estonian.
-*   Smart Booking: Initiates service bookings (e.g., oil changes, tire rotations, dental appointments) for later human approval.
-*   Instant Answers: Provides price ranges and answers frequently asked questions.
-*   Context-Aware: Maintains conversational context to provide personalized and efficient interactions.
+- **24/7 Call Handling:** Answers calls instantly in natural, fluent Estonian.
+- **Smart Booking:** Initiates service bookings (e.g., oil changes, tire rotations, dental appointments) for later human approval.
+- **Instant Answers:** Provides price ranges and answers frequently asked questions.
+- **Context-Aware:** Maintains conversational context to provide personalized and efficient interactions.
 
 ## Technical Implementation
 
@@ -46,6 +46,17 @@ There is also significant potential for expansion into the **Nordic and Baltic**
 *   **Fully Estonian**: The first real-time AI voice agent that sounds just like a native Estonian speaker.
 *   **Easy Integration**: Designed for simple API integration with existing booking and billing systems.
 *   **Scalable**: Flexible architecture suitable for any service industry, from auto repair to dentistry.
+
+## Infrastructure
+
+The models for this project run on a high-performance compute environment.
+
+**Provider:** Datacrunch  
+**Hardware:** 8× Nvidia A100 GPUs (admittedly overkill for this use case)
+
+For configuration details, refer to the shell scripts located in the `/llm` directory.
+
+---
 
 ## Getting Started
 
@@ -119,19 +130,7 @@ npm install
 npm run dev
 ```
 
-## Infrastructure
-
-The models for this project run on a high-performance compute environment.
-
-**Provider:** Datacrunch  
-**Hardware:** 8× Nvidia A100 GPUs (admittedly overkill for this use case)
-
-For configuration details, refer to the shell scripts located in the `/llm` directory.
-
-
 ## Screenshots
 <img width="1171" height="1004" alt="image" src="https://github.com/user-attachments/assets/b95e740a-3dd1-40d7-b652-3f998910b974" />
 <img width="1030" height="1030" alt="image" src="https://github.com/user-attachments/assets/f652cbbd-d8b9-4df2-8a16-5dd87fb02550" />
 <img width="1031" height="1036" alt="image" src="https://github.com/user-attachments/assets/0334a3a1-b3b5-4bae-a7c5-cefcb8ad08a2" />
-
-
